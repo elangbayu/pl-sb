@@ -5,7 +5,13 @@ import {
   devices,
   Page,
 } from "@playwright/test";
-import { After, Before, setWorldConstructor, World } from "@cucumber/cucumber";
+import {
+  After,
+  Before,
+  setDefaultTimeout,
+  setWorldConstructor,
+  World,
+} from "@cucumber/cucumber";
 import * as Pages from "../pages";
 
 export class CustomWorld extends World {
@@ -29,8 +35,9 @@ export class CustomWorld extends World {
 }
 
 setWorldConstructor(CustomWorld);
+setDefaultTimeout(60 * 1000);
 
-Before({ timeout: 30 * 1000 }, async function (this: CustomWorld) {
+Before(async function (this: CustomWorld) {
   const device = devices["Desktop Chrome"];
   this.browser = await chromium.launch({
     channel: "chrome",
