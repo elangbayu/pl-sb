@@ -6,6 +6,8 @@
 
 This project is a Playwright-based test automation framework using Cucumber.js for Stockbit web platform.
 
+Latest run example: [![Regression Test](https://github.com/elangbayu/pl-sb/actions/workflows/main.yml/badge.svg)](https://github.com/elangbayu/pl-sb/actions/workflows/main.yml)
+
 ## Prerequisites
 
 - Node.js (version >= 16)
