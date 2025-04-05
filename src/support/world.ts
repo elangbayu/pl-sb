@@ -12,7 +12,10 @@ export class CustomWorld extends World {
   browser!: Browser;
   context!: BrowserContext;
   page!: Page;
-  private pageObjects = new Map<string, any>();
+  private pageObjects = new Map<
+    string,
+    any /* eslint-disable-line @typescript-eslint/no-explicit-any */
+  >();
 
   getPage<T extends keyof typeof Pages>(
     pageName: T
