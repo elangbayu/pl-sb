@@ -8,8 +8,6 @@ import {
 import { After, Before, setWorldConstructor, World } from "@cucumber/cucumber";
 import * as Pages from "../pages";
 
-type PageObj = InstanceType<(typeof Pages)[keyof typeof Pages]>;
-
 export class CustomWorld extends World {
   browser!: Browser;
   context!: BrowserContext;
