@@ -34,7 +34,8 @@ Before(async function (this: CustomWorld) {
   const device = devices["Desktop Chrome"];
   this.browser = await chromium.launch({
     channel: "chrome",
-    headless: false,
+    // eslint-disable-next-line no-undef
+    headless: process.env.CI === "true",
     args: ["--start-maximized"],
   });
   this.context = await this.browser.newContext({
