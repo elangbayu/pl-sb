@@ -30,8 +30,10 @@ jobs:
       - run: npm install
       - run: npm test
       - name: Generate report
+        if: always()
         run: echo "Generate report here"
       - name: Upload report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
