@@ -1,15 +1,19 @@
 {
-  "name": "pl-sb",
+  "name": "stockbit-playwright",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
     "lint": "eslint ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "web-automation",
+    "playwright",
+    "test-automation",
+    "stockbit"
+  ],
+  "author": "Elang Segara",
+  "license": "MIT",
+  "description": "Test automation project for Stockbit web platform using Playwright and CucumberJS",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.0",
