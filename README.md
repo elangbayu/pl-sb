@@ -1,5 +1,9 @@
 # Stockbit Playwright Web Automation
 
+<p align="center">
+  <img src="icon.png" alt="Playwright + Cucumber" width="200" height="200">
+</p>
+
 This project is a Playwright-based test automation framework using Cucumber.js for Stockbit web platform.
 
 ## Prerequisites
