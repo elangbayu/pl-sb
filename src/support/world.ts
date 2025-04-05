@@ -35,7 +35,7 @@ export class CustomWorld extends World {
 }
 
 setWorldConstructor(CustomWorld);
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(30 * 1000);
 
 Before(async function (this: CustomWorld) {
   const device = devices["Desktop Chrome"];
