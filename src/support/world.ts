@@ -30,7 +30,7 @@ export class CustomWorld extends World {
 
 setWorldConstructor(CustomWorld);
 
-Before(async function (this: CustomWorld) {
+Before({ timeout: 30 * 1000 }, async function (this: CustomWorld) {
   const device = devices["Desktop Chrome"];
   this.browser = await chromium.launch({
     channel: "chrome",
