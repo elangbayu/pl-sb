@@ -12,7 +12,7 @@ This project is a Playwright-based test automation framework using Cucumber.js f
 1.  Clone the repository:
 
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/elangbayu/pl-sb.git
     ```
 
 2.  Install the dependencies:
