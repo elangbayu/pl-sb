@@ -5,18 +5,26 @@ import {
   devices,
   Page,
 } from "@playwright/test";
-import { LandingPage } from "../pages/LandingPage";
 import { After, Before, setWorldConstructor, World } from "@cucumber/cucumber";
-import { LoginPage } from "../pages/LoginPage";
-import { StreamPage } from "../pages/StreamPage";
+import * as Pages from "../pages";
+
+type PageObj = InstanceType<(typeof Pages)[keyof typeof Pages]>;
 
 export class CustomWorld extends World {
   browser!: Browser;
   context!: BrowserContext;
   page!: Page;
-  landingPage!: LandingPage;
-  loginPage!: LoginPage;
-  streamPage!: StreamPage;
+  private pageObjects = new Map<string, any>();
+
+  getPage<T extends keyof typeof Pages>(
+    pageName: T
+  ): InstanceType<(typeof Pages)[T]> {
+    if (!this.pageObjects.has(pageName)) {
+      const PageClass = Pages[pageName];
+      this.pageObjects.set(pageName, new PageClass(this.page));
+    }
+    return this.pageObjects.get(pageName);
+  }
 }
 
 setWorldConstructor(CustomWorld);
@@ -34,9 +42,6 @@ Before(async function (this: CustomWorld) {
     viewport: null,
   });
   this.page = await this.context.newPage();
-  this.landingPage = new LandingPage(this.page);
-  this.loginPage = new LoginPage(this.page);
-  this.streamPage = new StreamPage(this.page);
 });
 
 After(async function () {
