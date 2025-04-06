@@ -8,3 +8,5 @@ Feature: Authentication
     And User click login on login page
     And User skip avatar selection popup
     Then User see stream page
+    When User search for "cinmecin"
+    Then User see "cinmecin" in the search result suggestions list

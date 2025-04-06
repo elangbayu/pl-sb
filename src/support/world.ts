@@ -1,11 +1,4 @@
 import {
-  Browser,
-  BrowserContext,
-  chromium,
-  devices,
-  Page,
-} from "@playwright/test";
-import {
   After,
   Before,
   setDefaultTimeout,
@@ -13,11 +6,21 @@ import {
   World,
 } from "@cucumber/cucumber";
 import * as Pages from "../pages";
+import {
+  ActResult,
+  Browser,
+  BrowserContext,
+  Page,
+  Stagehand,
+} from "@browserbasehq/stagehand";
+import { CustomOpenAIClient } from "./customOpenAI_client";
+import OpenAI from "openai";
 
 export class CustomWorld extends World {
   browser!: Browser;
   context!: BrowserContext;
   page!: Page;
+  stagehand!: Stagehand;
   private pageObjects = new Map<
     string,
     any /* eslint-disable-line @typescript-eslint/no-explicit-any */
@@ -32,29 +35,42 @@ export class CustomWorld extends World {
     }
     return this.pageObjects.get(pageName);
   }
+
+  async actWithAI(instruction: string): Promise<ActResult> {
+    return await this.page.act(instruction);
+  }
 }
 
 setWorldConstructor(CustomWorld);
 setDefaultTimeout(30 * 1000);
 
 Before(async function (this: CustomWorld) {
-  const device = devices["Desktop Chrome"];
-  this.browser = await chromium.launch({
-    channel: "chrome",
-    // eslint-disable-next-line no-undef
-    headless: process.env.CI === "true",
-    args: ["--start-maximized"],
+  this.stagehand = new Stagehand({
+    env: "LOCAL",
+    llmClient: new CustomOpenAIClient({
+      modelName: "gpt-4o",
+      client: new OpenAI({
+        // eslint-disable-next-line no-undef
+        apiKey: process.env.LLM_API_KEY,
+        // eslint-disable-next-line no-undef
+        baseURL: process.env.LLM_BASE_URL,
+      }),
+    }),
+    localBrowserLaunchOptions: {
+      args: ["--window-size=1440,900", "--no-sandbox"],
+      viewport: {
+        width: 1440,
+        height: 695,
+      },
+      deviceScaleFactor: 2,
+    },
   });
-  this.context = await this.browser.newContext({
-    ...device,
-    deviceScaleFactor: undefined,
-    viewport: null,
-  });
-  this.page = await this.context.newPage();
+  await this.stagehand.init();
+  this.page = this.stagehand.page;
+  this.context = this.page.context();
+  this.browser = this.context.browser()!;
 });
 
-After(async function () {
-  await this.page.close();
-  await this.context.close();
-  await this.browser.close();
+After(async function (this: CustomWorld) {
+  await this.stagehand.close();
 });

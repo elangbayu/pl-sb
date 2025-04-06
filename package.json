@@ -1,6 +1,6 @@
 {
   "name": "stockbit-playwright",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "test": "cucumber-js",
     "lint": "eslint ."
@@ -13,16 +13,20 @@
   ],
   "author": "Elang Segara",
   "license": "MIT",
-  "description": "Test automation project for Stockbit web platform using Playwright and CucumberJS",
+  "description": "Test automation project for Stockbit web platform using Playwright and CucumberJS. With the power of AI using Stagehand.",
   "devDependencies": {
+    "@browserbasehq/sdk": "^2.5.0",
+    "@browserbasehq/stagehand": "^2.0.0",
+    "@cucumber/cucumber": "^11.2.0",
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.0",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
+    "boxen": "^8.0.1",
     "eslint": "^9.24.0",
-    "ts-node": "^10.9.2"
-  },
-  "dependencies": {
-    "@cucumber/cucumber": "^11.2.0"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "zod": "^3.24.2"
   }
 }
