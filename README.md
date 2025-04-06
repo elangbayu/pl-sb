@@ -37,6 +37,7 @@ Latest run example: [![Regression Test](https://github.com/elangbayu/pl-sb/actio
     ```bash
     export LLM_API_KEY=your_api_key_here
     export LLM_BASE_URL=your_base_url_here
+    export LLM_MODEL_NAME=your_model_name_here
     # or create a .env file with those value
     ```
 

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import {
   After,
   Before,
@@ -48,7 +49,8 @@ Before(async function (this: CustomWorld) {
   this.stagehand = new Stagehand({
     env: "LOCAL",
     llmClient: new CustomOpenAIClient({
-      modelName: "gpt-4o",
+      // eslint-disable-next-line no-undef
+      modelName: process.env.LLM_MODEL_NAME ?? "gpt-4o",
       client: new OpenAI({
         // eslint-disable-next-line no-undef
         apiKey: process.env.LLM_API_KEY,
