@@ -19,8 +19,8 @@ export class StreamPage {
     await this.avatarSelectionPopup.clickSkip();
   }
 
-  async getStreamNavigationElement() {
-    return this.streamWidgetNavigation;
+  async isStreamWidgetVisible() {
+    return await this.streamWidgetNavigation.isVisible();
   }
 
   async search(query: string) {

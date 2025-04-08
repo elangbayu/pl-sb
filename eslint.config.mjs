@@ -20,7 +20,7 @@ export default [
       ...tsPlugin.configs.recommended.rules,
       // your overrides
     },
-    ignores: ["node_modules/"],
+    ignores: ["node_modules/", "allure-report/", "allure-results/"],
   },
   {
     files: ["cucumber.js"],
@@ -32,5 +32,8 @@ export default [
         exports: "readonly",
       },
     },
+  },
+  {
+    ignores: ["allure-report/", "allure-results/"],
   },
 ];

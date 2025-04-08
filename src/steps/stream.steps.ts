@@ -7,9 +7,7 @@ When("User skip avatar selection popup", async function (this: CustomWorld) {
 });
 
 Then("User see stream page", async function (this: CustomWorld) {
-  expect(
-    (await this.getPage("StreamPage").getStreamNavigationElement()).isVisible()
-  ).toBe(true);
+  expect(await this.getPage("StreamPage").isStreamWidgetVisible()).toBe(true);
 });
 
 When(
@@ -22,7 +20,7 @@ When(
 Then(
   "User see {string} in the search result suggestions list",
   async function (this: CustomWorld, query: string) {
-    expect(this.getPage("StreamPage").getSearchSuggestionsText()).toEqual(
+    expect(await this.getPage("StreamPage").getSearchSuggestionsText()).toBe(
       query
     );
   }
