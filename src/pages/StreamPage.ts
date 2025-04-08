@@ -1,4 +1,4 @@
-import { expect, Locator } from "@playwright/test";
+import { Locator } from "@playwright/test";
 import { Page } from "@browserbasehq/stagehand";
 import { AvatarSelectionModal } from "../components/AvatarSelectionModal";
 import { actWithCache } from "../support/utils";
@@ -19,8 +19,8 @@ export class StreamPage {
     await this.avatarSelectionPopup.clickSkip();
   }
 
-  async assertStreamLoaded() {
-    expect(this.streamWidgetNavigation).toBeVisible();
+  async getStreamNavigationElement() {
+    return this.streamWidgetNavigation;
   }
 
   async search(query: string) {
@@ -30,7 +30,7 @@ export class StreamPage {
     );
   }
 
-  async assertSearchResultSuggestions(query: string) {
+  async getSearchSuggestionsText() {
     const { text } = await this.page.extract({
       instruction:
         "Extract the text from the search suggestions result right below the search input in navigation menu bar",
@@ -38,6 +38,6 @@ export class StreamPage {
         text: z.string(),
       }),
     });
-    expect(text).toContain(query);
+    return text;
   }
 }
