@@ -1,4 +1,4 @@
-import { When } from "@cucumber/cucumber";
+import { Given, When } from "@cucumber/cucumber";
 import type { CustomWorld } from "../support/world";
 
 When(
@@ -18,3 +18,10 @@ When(
 When("User click login on login page", async function (this: CustomWorld) {
   await this.getPage("LoginPage").clickLogin();
 });
+
+Given(
+  "User login using {string} account",
+  async function (this: CustomWorld, account: string) {
+    await this.getPage("LoginPage").login(account);
+  }
+);

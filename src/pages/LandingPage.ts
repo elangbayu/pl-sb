@@ -12,10 +12,10 @@ export class LandingPage {
 
   async goto() {
     await this.page.goto("https://stockbit.com");
-    await this.page.waitForLoadState("networkidle");
   }
 
   async clickLogin() {
+    await this.page.waitForLoadState("networkidle");
     await this.loginButton.click();
   }
 }
