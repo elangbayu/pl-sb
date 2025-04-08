@@ -1,4 +1,5 @@
-import { Locator, Page, expect } from "@playwright/test";
+import { Locator, expect } from "@playwright/test";
+import { Page } from "@browserbasehq/stagehand";
 
 export class LandingPage {
   private stockbitHeroLandingText: Locator;

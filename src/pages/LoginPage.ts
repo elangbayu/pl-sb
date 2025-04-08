@@ -1,4 +1,5 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator } from "@playwright/test";
+import { Page } from "@browserbasehq/stagehand";
 
 export class LoginPage {
   private usernameInput: Locator;
